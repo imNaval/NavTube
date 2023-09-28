@@ -8,7 +8,7 @@ const ButtonList = () => {
     //build it scrollable like youtube
     <div className='flex'>
     {
-      btnList.map(btn => <Button name={btn} />)
+      btnList.map((btn, idx) => <Button key={idx} name={btn} />)
     }
     </div>
   )
