@@ -4,3 +4,5 @@ export const YOUTUBE_VIDEO_API = "https://youtube.googleapis.com/youtube/v3/vide
 //https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=AIzaSyCErnx1DAxJojatyO1moTufQ-bADdD7IFw
 
 export const YOUTUBE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+
+export const LIVE_CHAT_LIMIT = 100
