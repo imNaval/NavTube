@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeMenu } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
@@ -11,17 +11,32 @@ const WatchPage = () => {
     const vId = searchParams.get('v')
     // console.log(vId)
 
+    const [width, setWidth] = useState(window.innerWidth)
+    let timer;
+    const handleResize = (e) =>{
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            setWidth(window.innerWidth)
+            // console.log(width, window.innerWidth)
+        }, 200);
+    }
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(closeMenu())
+
+        window.addEventListener('resize', handleResize)
+        return ()=>{
+            window.removeEventListener('resize', handleResize)
+        }
     }, [])
     return (
         <div>
-            <div className='px-5 col-span-11 flex'>
+            <div className={`px-5 col-span-11 ${width>800 && 'flex'}`}>
                 <iframe
                     width="1000"
                     height="400"
-                    className='w-2/3'
+                    className={`${width>900 ?'w-2/3' : 'w-full'}`}
                     // src="https://www.youtube.com/embed/Lz51wnb_cSU?si=7bVJ0B1AOmBXB6RN" 
                     src={"https://www.youtube.com/embed/" + vId + "?si=7bVJ0B1AOmBXB6RN"}
                     title="YouTube video player"
@@ -29,7 +44,7 @@ const WatchPage = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                 ></iframe>
-                <LiveChat />
+                <LiveChat width={width} />
             </div>
             <CommentsContainer />
         </div>

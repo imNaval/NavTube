@@ -50,7 +50,7 @@ const Header = () => {
     }
 
     return (
-        <div className='grid grid-flow-col p-5 m-2 shadow-lg fixed w-full bg-white mt-0'>
+        <div className='grid grid-flow-col p-5 shadow-lg fixed w-full bg-white mt-0 z-50'>
             <div className='flex col-span-2'>
                 <img className='h-10'
                     alt='hamburger_menu'

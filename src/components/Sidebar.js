@@ -10,38 +10,39 @@ const Sidebar = () => {
   if(!isMenuOpen) return null;
 
   return (
-    <div className='col-span-1 p-5 shadow-lg'>
-
+    <div className='col-span-1 p-0 z-40 shadow-lg'>
+      <div className='bg-white p-5'>
       <ul>
-        <Link to="/"><li>Home</li></Link>
-        <li>Shorts</li>
-        <li>Subscription</li>
+        <Link to="/"><li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Home</li></Link>
+        <li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Shorts</li>
+        <li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Subscription</li>
       </ul>
 
       <hr className='my-2'/>
 
       <ul>
-        <li>Library</li>
-        <li>History</li>
-        <li>Your Videos</li>
-        <li>Watch Later</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Library</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>History</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Your Videos</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Watch Later</li>
       </ul>
 
-      <h1 className='font-bold mt-5'>Subscription</h1>
+      <h1 className='font-bold mt-4'>Subscription</h1>
       <ul>
-        <li>Musics</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Musics</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Sports</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Gaming</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Movies</li>
       </ul>
 
-      <h1 className='font-bold pt-5'>Explore</h1>
+      <h1 className='font-bold pt-3'>Explore</h1>
       <ul>
-        <li>Musics</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Musics</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Sports</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Gaming</li>
+        <li className='p-1 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Movies</li>
       </ul>
+    </div>
     </div>
   )
 }

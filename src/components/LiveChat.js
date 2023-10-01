@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addMessage } from '../utils/chatSlice'
 import { generateName, makeId } from '../mocks/halper'
 
-const LiveChat = () => {
+const LiveChat = ({width}) => {
 
     const [myChat, setMyChat] = useState("")
 
@@ -23,7 +23,7 @@ const LiveChat = () => {
         return () => clearInterval(i)
     }, [])
     return (
-        <div className='w-1/3 mx-2 px-2 '>
+        <div className={`${width>900 ? 'w-1/3 mx-2 px-2' : 'w-full m-2 p-2'}`}>
             <div className='p-2 px-8 font-bold border border-black border-b-0 rounded-t-lg'>
                 Live Chat
             </div>
