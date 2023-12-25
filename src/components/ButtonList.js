@@ -6,7 +6,7 @@ const btnList = ["All", "Music", "Gaming", "Live", "Bharat", "Sanatan", "Cricket
 const ButtonList = () => {
   return (
     //build it scrollable like youtube
-    <div className='flex'>
+    <div className='flex justify-center'>
     {
       btnList.map((btn, idx) => <Button key={idx} name={btn} />)
     }
