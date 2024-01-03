@@ -5,9 +5,7 @@ import { addMessage } from '../utils/chatSlice'
 import { generateName, makeId } from '../mocks/halper'
 
 const LiveChat = ({width}) => {
-
     const [myChat, setMyChat] = useState("")
-
     const dispatch = useDispatch()
     const chatMessages = useSelector(store => store.chat.messages)
 
@@ -35,7 +33,6 @@ const LiveChat = ({width}) => {
             <form className='flex justify-between p-2 border border-black border-t-0 rounded-b-lg'
                 onSubmit={(e)=> {
                     e.preventDefault()
-                    // console.log(myChat)
 
                     dispatch(addMessage({
                         name: "Naval",

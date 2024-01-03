@@ -4,12 +4,11 @@ import { closeMenu } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
 import CommentsContainer from './CommentsContainer';
 import LiveChat from './LiveChat';
+import { clearMessage } from '../utils/chatSlice';
 
 const WatchPage = () => {
-
     const [searchParams] = useSearchParams();
     const vId = searchParams.get('v')
-    // console.log(vId)
 
     const [width, setWidth] = useState(window.innerWidth)
     let timer;
@@ -23,11 +22,13 @@ const WatchPage = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
+        window.scrollTo(0,0)
         dispatch(closeMenu())
-
         window.addEventListener('resize', handleResize)
+
         return ()=>{
             window.removeEventListener('resize', handleResize)
+            dispatch(clearMessage())
         }
     }, [])
     return (
@@ -37,7 +38,6 @@ const WatchPage = () => {
                     width="1000"
                     height="400"
                     className={`${width>900 ?'w-2/3' : 'w-full'}`}
-                    // src="https://www.youtube.com/embed/Lz51wnb_cSU?si=7bVJ0B1AOmBXB6RN" 
                     src={"https://www.youtube.com/embed/" + vId + "?si=7bVJ0B1AOmBXB6RN"}
                     title="YouTube video player"
                     frameBorder="0"
@@ -52,9 +52,3 @@ const WatchPage = () => {
 }
 
 export default WatchPage
-
-//frameborder -> frameBorder
-//allowfullscreen -> AllowFullScreen
-//iframe->w->1200 h->600
-//src="https://www.youtube.com/embed/Lz51wnb_cSU?si=7bVJ0B1AOmBXB6RN"
-//src={"https://www.youtube.com/embed/"+ video_id +"?si=7bVJ0B1AOmBXB6RN"}

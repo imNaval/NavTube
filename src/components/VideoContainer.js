@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 const VideoContainer = () => {
 
   const [videos, setVideos] = useState([])
+  const [nextToken, setNextToken] = useState([]);
 
   useEffect(() => {
     getVideos();
@@ -15,6 +16,7 @@ const VideoContainer = () => {
     const json = await data.json()
 
     // console.log(json)
+    setNextToken(json?.nextPageToken)
     setVideos(json.items)
   }
 
