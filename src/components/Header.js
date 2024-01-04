@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice'
-import { LOGO_URL, YOUTUBE_SEARCH_SUGGESTION_API, corsproxy } from '../utils/constant';
-import { cacheResults } from '../utils/searchSlice';
+import { LOGO_URL, SEARCH_VIDEO_API, YOUTUBE_SEARCH_SUGGESTION_API, corsproxy } from '../utils/constant';
+import { cacheResults, saveSearchVideos } from '../utils/searchSlice';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-    const searchCache = useSelector(store => store.search);
+    const searchCache = useSelector(store => store.search.searchResult);
+    
     const dispatch = useDispatch()
 
     useEffect(()=>{
@@ -40,6 +42,23 @@ const Header = () => {
         }))
     }
 
+    const getSearchVideos = async (query) => {
+        try{
+            setShowSuggestions(false)
+            setSearchQuery(query)
+
+            const data = await fetch(SEARCH_VIDEO_API + '&q=' + query)
+            const json = await data.json()
+            // console.log(json)
+
+            dispatch(saveSearchVideos(json?.items))
+        }
+        catch(err){
+            console.error(err.message)
+        }
+
+    }
+
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())  //toggleMenu() not toggleMenu
     }
@@ -53,11 +72,10 @@ const Header = () => {
                     onClick={() => toggleMenuHandler()}
                 />
                 {/* <Link to="/"> */}  {/*it give error bcs header was not wrapped with router */}
-                    <img className='h-10 mx-3'
-                        alt='yt-logo'
-                        src={LOGO_URL}
-                    />
-                {/* </Link> */}
+                {/* now i wrap it  */}
+                <Link to="/">
+                    <img className='h-10 mx-3' alt='yt-logo' src={LOGO_URL}/>
+                </Link> 
             </div>
 
             <div className='col-span-8 text-center'>
@@ -67,7 +85,7 @@ const Header = () => {
                         value={searchQuery}
                         onChange={(e)=> setSearchQuery(e.target.value)}
                         onFocus={()=> setShowSuggestions(true)}
-                        onBlur={()=> setShowSuggestions(false)}
+                        // onBlur={()=> setShowSuggestions(false)}
                     />
                     <button className='py-2 px-4 border border-gray-500 rounded-r-full bg-gray-200'>🔍</button>
                 </div>
@@ -77,7 +95,7 @@ const Header = () => {
                     <ul className=''>
                         {/* <li className='py-2 px-4 hover:bg-gray-200 cursor-default'>🕜 i</li> */}
                         {
-                            suggestions.map(s => <li key={s} className='py-1 px-4 hover:bg-gray-200 cursor-default'>🔍 {s}</li>)
+                            suggestions.map(s => <Link to={"/search/" + s} key={s}> <li className='py-1 px-4 hover:bg-gray-200 cursor-default' onClick={(e)=> getSearchVideos(s)}>🔍 {s}</li> </Link>)
                         }
                     </ul>
                 </div>
