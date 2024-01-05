@@ -1,4 +1,4 @@
-export const CREDENTIALS = "AIzaSyCErnx1DAxJojatyO1moTufQ-bADdD7IFw";
+export const CREDENTIALS = "AIzaSyAi2s9L8pKm8X5WZS7brywqwY2d6mlrdko"; //AIzaSyCErnx1DAxJojatyO1moTufQ-bADdD7IFw //
 
 export const YOUTUBE_VIDEO_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&maxResults=50&key=" + CREDENTIALS
 

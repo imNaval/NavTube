@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { CREDENTIALS, MORE_VIDEO_API, YOUTUBE_VIDEO_API } from '../utils/constant'
 import VideoCard from './VideoCard'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 const VideoContainer = () => {
 
@@ -10,8 +9,6 @@ const VideoContainer = () => {
   const [nextToken, setNextToken] = useState("");
   const refVideoContainer = useRef(null)
   const refNextPageToken = useRef("");
-
-  const searchVideos = useSelector(store => store.search.searchVideos)
 
   const debounce = (func, delay=100) =>{
     let timer;
@@ -46,7 +43,7 @@ const VideoContainer = () => {
       const data = await fetch(YOUTUBE_VIDEO_API);
       const json = await data.json();
       
-      console.log(json)
+      // console.log(json)
       refNextPageToken.current = json?.nextPageToken
       setNextToken(json?.nextPageToken);
       setVideos(json?.items);
@@ -60,12 +57,6 @@ const VideoContainer = () => {
     window.addEventListener('scroll', handleScroll);
     return ()=> window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // useEffect(()=>{
-  //   // searchVideos.length && setVideos(searchVideos)
-  //   searchVideos.length && console.log(searchVideos)
-  // }, [searchVideos])
-
 
   return (
     <div className='flex flex-wrap justify-center' ref={refVideoContainer}>

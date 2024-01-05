@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from './Button'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const btnList = ["All", "Music", "Gaming", "Live", "Javascript", "React", "Interview", "Frontend", "Bharat", "Cricket", "News", "LoFi", "Musics", "Drama", "Cinema", "Watched"]
 
@@ -20,7 +21,7 @@ const ButtonList = () => {
       <div className="overflow-hidden px-12 relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
-            btnList.map((btn, idx) => <Button key={idx} name={btn} />)
+            btnList.map((btn, idx) => <Link to={"/search/" + btn}> <Button key={idx} name={btn} /> </Link>)
           }
         </div>
       </div>
@@ -32,14 +33,6 @@ const ButtonList = () => {
       </button>
     </div>
   );
-
-  // return (
-  //   <div className='flex justify-center'>
-  //   {
-  //     btnList.map((btn, idx) => <Button key={idx} name={btn} />)
-  //   }
-  //   </div>
-  // )
 }
 
 export default ButtonList

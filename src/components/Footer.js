@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='min-h-[30rem] bg-black text-white text-center md:flex justify-around pt-16'>
+    <div className='min-h-[15rem] bg-black text-white text-center md:flex justify-around pt-16'>
         <div className='pb-16'>
             <img
                 className="w-20 mb-3 m-auto"

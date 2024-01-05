@@ -10,7 +10,7 @@ const Body = () => {
         <Sidebar />
       </div>
       {/* <MainContainer /> && <WatchPage /> */}
-      <div className='mt-24 col-span-11 overflow-y-scroll'>
+      <div className='mt-24 col-span-11 sm:col-span-10 overflow-y-scroll'>
         <Outlet />
       </div>
     </div>

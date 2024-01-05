@@ -10,11 +10,11 @@ const Sidebar = () => {
   if(!isMenuOpen) return null;
 
   return (
-    <div className='col-span-1 p-0 z-40 shadow-lg'>
+    <div className='col-span-1 sm:col-span-2 p-0 z-40 shadow-lg'>
       <div className='bg-white p-5'>
       <ul>
         <Link to="/"><li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Home</li></Link>
-        <li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Shorts</li>
+        <Link to={"/search/Shorts"}><li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Shorts</li></Link>
         <li className='p-2 hover:bg-grey-200 hover:border hover:rounded-lg cursor-pointer'>Subscription</li>
       </ul>
 

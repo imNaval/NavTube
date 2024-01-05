@@ -47,11 +47,11 @@ const Header = () => {
             setShowSuggestions(false)
             setSearchQuery(query)
 
-            const data = await fetch(SEARCH_VIDEO_API + '&q=' + query)
-            const json = await data.json()
-            // console.log(json)
+            // const data = await fetch(SEARCH_VIDEO_API + '&q=' + query)
+            // const json = await data.json()
+            // // console.log(json)
 
-            dispatch(saveSearchVideos(json?.items))
+            // dispatch(saveSearchVideos(json?.items))
         }
         catch(err){
             console.error(err.message)
