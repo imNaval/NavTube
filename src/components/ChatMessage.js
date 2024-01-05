@@ -1,14 +1,11 @@
 import React from 'react'
+import { FaRegUserCircle } from 'react-icons/fa'
 
 const ChatMessage = ({data}) => {
     const {name, message} = data
   return (
     <div className='flex m-2'>
-      <img
-        className='w-6 h-6'
-        alt='user'
-        src='https://static.vecteezy.com/system/resources/previews/007/296/443/non_2x/user-icon-person-icon-client-symbol-profile-icon-vector.jpg'
-      />
+      <FaRegUserCircle className='w-6 h-6' />
       <div className='items-center'>
       <span className='m-2 font-bold'>{name}</span>
       <span >{message}</span>

@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { CREDENTIALS, MORE_VIDEO_API, YOUTUBE_VIDEO_API } from '../utils/constant'
+import { MORE_VIDEO_API, YOUTUBE_VIDEO_API } from '../utils/constant'
 import VideoCard from './VideoCard'
 import { Link } from 'react-router-dom'
 
 const VideoContainer = () => {
-
   const [videos, setVideos] = useState([])
-  const [nextToken, setNextToken] = useState("");
   const refVideoContainer = useRef(null)
   const refNextPageToken = useRef("");
 
@@ -24,7 +22,7 @@ const VideoContainer = () => {
   }
 
   const getMoreVideos = async () =>{
-    const data = await fetch(MORE_VIDEO_API + "&pageToken=" + refNextPageToken.current + '&key=' + CREDENTIALS)
+    const data = await fetch(MORE_VIDEO_API + "&pageToken=" + refNextPageToken.current)
     const json = await data.json()
 
     refNextPageToken.current = json?.nextPageToken
@@ -43,9 +41,7 @@ const VideoContainer = () => {
       const data = await fetch(YOUTUBE_VIDEO_API);
       const json = await data.json();
       
-      // console.log(json)
       refNextPageToken.current = json?.nextPageToken
-      setNextToken(json?.nextPageToken);
       setVideos(json?.items);
     } catch (error) {
       console.error('Error fetching videos:', error);

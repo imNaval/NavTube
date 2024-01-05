@@ -1,11 +1,13 @@
 import React from 'react'
 import { LOGO_URL } from '../utils/constant'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 // import logo from "../utils/images/logo.png"
 
 const Footer = () => {
+    const {isDark} = useSelector(store => store.app)
   return (
-    <div className='min-h-[15rem] bg-black text-white text-center md:flex justify-around pt-16'>
+    <div className={`min-h-[15rem] text-center md:flex justify-around pt-16 ${isDark ? 'text-gray-700 bg-slate-400' : 'bg-black text-white'}`}>
         <div className='pb-16'>
             <img
                 className="w-20 mb-3 m-auto"

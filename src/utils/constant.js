@@ -1,9 +1,9 @@
-export const CREDENTIALS = "AIzaSyAi2s9L8pKm8X5WZS7brywqwY2d6mlrdko"; //AIzaSyCErnx1DAxJojatyO1moTufQ-bADdD7IFw //
+export const CREDENTIALS = process.env.REACT_APP_CREDENTIALS
 
 export const YOUTUBE_VIDEO_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&maxResults=50&key=" + CREDENTIALS
 
-export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=50' //&pageToken=[NEXT_PAGE_TOKEN]&key=[YOUR_API_KEY]' 
-// export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=50&pageToken='
+// export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=50' //&pageToken=[NEXT_PAGE_TOKEN]&key=[YOUR_API_KEY]' 
+export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=50&key=' + CREDENTIALS
 // export const KEY = '&key=' +CREDENTIALS
 
 export const SEARCH_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&key=' + CREDENTIALS //&q=javascript

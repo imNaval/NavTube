@@ -3,11 +3,13 @@ import ChatMessage from './ChatMessage'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMessage } from '../utils/chatSlice'
 import { generateName, makeId } from '../mocks/halper'
+import { FaPaperPlane } from 'react-icons/fa'
 
 const LiveChat = ({width}) => {
     const [myChat, setMyChat] = useState("")
     const dispatch = useDispatch()
     const chatMessages = useSelector(store => store.chat.messages)
+    const {isDark} = useSelector(store => store.app)
 
     useEffect(() => {
         const i = setInterval(() => {
@@ -22,15 +24,15 @@ const LiveChat = ({width}) => {
     }, [])
     return (
         <div className={`${width>900 ? 'w-1/3 mx-2 px-2' : 'w-full m-2 p-2'}`}>
-            <div className='p-2 px-8 font-bold border border-black border-b-0 rounded-t-lg'>
+            <div className={`p-2 px-8 font-bold border border-b-0 rounded-t-lg ${isDark ? 'border-gray-200' : 'border-black'}`}>
                 Live Chat
             </div>
-            <div className='border border-black h-[400px] overflow-y-scroll flex flex-col-reverse'>
+            <div className={`border h-[400px] overflow-y-scroll flex flex-col-reverse ${isDark ? 'border-gray-200' : 'border-black'}`}>
                 {
                     chatMessages?.map((chat, index) => <ChatMessage key={index} data={chat} />)
                 }
             </div>
-            <form className='flex justify-between p-2 border border-black border-t-0 rounded-b-lg'
+            <form className={`flex justify-between p-2 border border-t-0 rounded-b-lg ${isDark ? 'border-gray-200' : 'border-black'}`}
                 onSubmit={(e)=> {
                     e.preventDefault()
 
@@ -41,12 +43,12 @@ const LiveChat = ({width}) => {
                     setMyChat("")
                 }}
             >
-                <input className='p-2 border-b border-b-gray-400 focus:outline-none focus:border-b-2 focus:border-b-blue-900 w-full' 
+                <input className={`p-2 border-b focus:outline-none focus:border-b-2 w-full ${isDark ? 'bg-gray-900 text-gray-200 border-b-gray-100 focus:border-b-blue-300' : 'focus:border-b-blue-900 border-b-gray-400'}`}
                     maxLength={30}
                     value={myChat}
                     onChange={(e)=>setMyChat(e.target.value)}
                 />
-                <button className='p-2 mx-2 bg-green-400 border border-gray-400 rounded-lg'>Send</button>
+                <button className='p-2 mx-2 border border-gray-400 rounded-lg'><FaPaperPlane /></button>
             </form>
         </div>
     )

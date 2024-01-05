@@ -10,7 +10,7 @@ const SearchVideos = () => {
 
     const dispatch = useDispatch()
     const searchVideos = useSelector(store => store.search.searchVideos)
-    const isMenuOpen = useSelector(store=> store.app.isMenuOpen)
+    const {isMenuOpen, isDark} = useSelector(store=> store.app)
     const [width, setWidth] = useState(window.innerWidth)
     let timer;
     const {query} = useParams()

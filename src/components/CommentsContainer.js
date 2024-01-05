@@ -1,15 +1,12 @@
 import React from 'react'
 import { commentsData } from '../mocks/comments'
+import { FaUserCircle } from 'react-icons/fa';
 
 const Comment = ({ data }) => {
   const { name, text } = data;
   return (
     <div className='flex'>
-      <img
-        className='w-8 h-8 mr-4'
-        alt='user'
-        src='https://static.vecteezy.com/system/resources/previews/007/296/443/non_2x/user-icon-person-icon-client-symbol-profile-icon-vector.jpg'
-      />
+      <FaUserCircle className='w-8 h-8 mr-4 mt-2' />
       <div>
         <p>{name}</p>
         <p>{text}</p>
