@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { closeMenu } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
 import CommentsContainer from './CommentsContainer';
@@ -7,6 +7,7 @@ import LiveChat from './LiveChat';
 import { clearMessage } from '../utils/chatSlice';
 
 const WatchPage = () => {
+    const {isDark} = useSelector(store=> store.app)
     const [searchParams] = useSearchParams();
     const vId = searchParams.get('v')
 
@@ -33,7 +34,7 @@ const WatchPage = () => {
     }, [])
     return (
         <div>
-            <div className={`px-5 col-span-11 ${width>800 && 'flex'}`}>
+            <div className={`px-5 col-span-11 ${width>800 && 'flex'} ${isDark && 'bg-gray-900'}`}>
                 <iframe
                     width="1000"
                     height="400"

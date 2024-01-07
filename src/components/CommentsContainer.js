@@ -1,6 +1,7 @@
 import React from 'react'
 import { commentsData } from '../mocks/comments'
 import { FaUserCircle } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const Comment = ({ data }) => {
   const { name, text } = data;
@@ -28,8 +29,9 @@ const CommentList = ({comments}) =>{
 }
 
 const CommentsContainer = () => {
+  const {isDark} = useSelector(store=> store.app)
   return (
-    <div className='m-5 p-2'>
+    <div className={`my-5 p-4 ${isDark && 'bg-gray-900'}`}>
       <h1 className='text-2xl font-bold'>Components : </h1>
 
       <CommentList comments={commentsData} />

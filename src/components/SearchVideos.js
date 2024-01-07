@@ -5,12 +5,13 @@ import { SEARCH_VIDEO_API } from '../utils/constant'
 import { saveSearchVideos } from '../utils/searchSlice'
 import { Link, useParams } from 'react-router-dom'
 import SearchVideoCard from './SearchVideoCard'
+import { ShimmerSearchVideoContainer } from './Shimmer'
 
 const SearchVideos = () => {
 
     const dispatch = useDispatch()
     const searchVideos = useSelector(store => store.search.searchVideos)
-    const {isMenuOpen, isDark} = useSelector(store=> store.app)
+    const {isMenuOpen} = useSelector(store=> store.app)
     const [width, setWidth] = useState(window.innerWidth)
     let timer;
     const {query} = useParams()
@@ -41,7 +42,7 @@ const SearchVideos = () => {
         return ()=> window.removeEventListener('resize', handleResize)
     }, [query])
 
-    if(!searchVideos || searchVideos.length === 0) return <div className={`'col-span-11' ${isMenuOpen&& width>800 && 'ml-40'}`}>Hello World</div>
+    if(!searchVideos || searchVideos.length === 0) return <ShimmerSearchVideoContainer />
   return (
     <div className={`'col-span-11 mb-12 ml-8' ${isMenuOpen&& width>800 && 'ml-48'}`}>
         <ButtonList />
@@ -50,7 +51,6 @@ const SearchVideos = () => {
             <SearchVideoCard video={video} />
             </Link>)
         }
-        
     </div>
   )
 }

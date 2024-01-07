@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const SearchVideoCard = (props) => {
     const { channelId, channelTitle, description, title, thumbnails } = props?.video?.snippet
+    const isDark = useSelector(store=> store.app.isDark)
 
     return (
         <>
-        <div className='sm:flex overflow-hidden group p-4'>
+        <div className={`sm:flex overflow-hidden group p-4 ${isDark && 'bg-gray-900'}`}>
             <div className='w-[35rem] relative'>
                 <img className='w-full shadow-xl' src={thumbnails.high.url} alt='thumbnail' />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black to-black opacity-0 group-hover:opacity-60 transition-all duration-300"></div>

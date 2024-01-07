@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import { MORE_VIDEO_API, YOUTUBE_VIDEO_API } from '../utils/constant'
 import VideoCard from './VideoCard'
 import { Link } from 'react-router-dom'
+import { ShimmerVideoContainer } from './Shimmer'
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([])
   const refVideoContainer = useRef(null)
   const refNextPageToken = useRef("");
-
+console.log(videos)
   const debounce = (func, delay=100) =>{
     let timer;
     return function(){
@@ -29,10 +30,12 @@ const VideoContainer = () => {
     setVideos(prev => [...prev, ...json.items])
   }
   const getData = () =>{
+    if(refVideoContainer?.current?.getBoundingClientRect()){
     const {bottom} = refVideoContainer.current.getBoundingClientRect();
     if(bottom < window.innerHeight && refNextPageToken.current){
       getMoreVideos();
     }
+  }
   }
   const handleScroll = debounce(getData)
 
@@ -54,7 +57,9 @@ const VideoContainer = () => {
     return ()=> window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // if(!videos) return <div></div>
   return (
+    !videos || videos.length===0 ? <ShimmerVideoContainer /> :
     <div className='flex flex-wrap justify-center' ref={refVideoContainer}>
       {
         videos?.map(video => <Link to={"/watch?v=" + video.id} key={video.id} >

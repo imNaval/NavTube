@@ -8,7 +8,8 @@ export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?
 
 export const SEARCH_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&key=' + CREDENTIALS //&q=javascript
 
-export const YOUTUBE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+// export const YOUTUBE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+export const YOUTUBE_SEARCH_SUGGESTION_API = "https://coder-food-server.vercel.app/api/youtube/get/search?q="
 
 export const LIVE_CHAT_LIMIT = 100
 

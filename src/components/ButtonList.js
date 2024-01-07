@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Button from './Button'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const btnList = ["All", "Music", "Gaming", "Live", "Javascript", "React", "Interview", "Frontend", "Bharat", "Cricket", "News", "LoFi", "Musics", "Drama", "Cinema", "Watched"]
 
 const ButtonList = () => {
   const length = btnList.length;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isDark = useSelector(store=> store.app.isDark)
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? prevIndex : prevIndex - 1));
@@ -17,7 +19,7 @@ const ButtonList = () => {
   };
 
   return (
-    <div className="relative">
+    <div className={`relative ${isDark && 'bg-gray-900'}`}>
       <div className="overflow-hidden px-12 relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
