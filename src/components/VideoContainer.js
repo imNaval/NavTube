@@ -8,7 +8,7 @@ const VideoContainer = () => {
   const [videos, setVideos] = useState([])
   const refVideoContainer = useRef(null)
   const refNextPageToken = useRef("");
-console.log(videos)
+
   const debounce = (func, delay=100) =>{
     let timer;
     return function(){
@@ -43,7 +43,7 @@ console.log(videos)
     try {
       const data = await fetch(YOUTUBE_VIDEO_API);
       const json = await data.json();
-      
+      // console.log(json)
       refNextPageToken.current = json?.nextPageToken
       setVideos(json?.items);
     } catch (error) {

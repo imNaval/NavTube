@@ -23,7 +23,7 @@ const ButtonList = () => {
       <div className="overflow-hidden px-12 relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
-            btnList.map((btn, idx) => <Link to={"/search/" + btn}> <Button key={idx} name={btn} /> </Link>)
+            btnList.map((btn) => <Link key={btn} to={"/search/" + btn}> <Button name={btn} /> </Link>)
           }
         </div>
       </div>

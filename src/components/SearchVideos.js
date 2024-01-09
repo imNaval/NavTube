@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ButtonList from './ButtonList'
 import { useDispatch, useSelector } from 'react-redux'
 import { SEARCH_VIDEO_API } from '../utils/constant'
-import { saveSearchVideos } from '../utils/searchSlice'
+import { clearSearchVideos, saveSearchVideos } from '../utils/searchSlice'
 import { Link, useParams } from 'react-router-dom'
 import SearchVideoCard from './SearchVideoCard'
 import { ShimmerSearchVideoContainer } from './Shimmer'
@@ -37,6 +37,7 @@ const SearchVideos = () => {
         }
     }
     useEffect(()=>{
+        dispatch(clearSearchVideos())
         getSearchVideos();
         window.addEventListener('resize', handleResize)
         return ()=> window.removeEventListener('resize', handleResize)

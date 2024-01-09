@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { getRelativeTimeDifference, modifyNumber } from '../utils/helper';
+import { FaUpload } from 'react-icons/fa';
 
 const VideoCard = ({info}) => {
     // console.log(info)
@@ -16,7 +18,11 @@ const VideoCard = ({info}) => {
         <ul>
             <li className='font-bold py-2'>{title.length > 60 ? title.substring(0,60) + "..." : title}</li>
             <li>{channelTitle}</li>
-            <li>{statistics.viewCount} views</li>
+            <li className='flex'>
+              <span>{modifyNumber(statistics.viewCount)} views</span>
+              <span className='ml-2 text-xs'> <FaUpload className='mt-2' /> </span>
+              <span>{getRelativeTimeDifference(snippet.publishedAt)}</span>
+            </li>
         </ul>
     </div>
   )

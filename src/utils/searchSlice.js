@@ -17,10 +17,13 @@ const searchSlice = createSlice({
         },
         saveSearchVideos: (state, action) => {
             state.searchVideos = action.payload
+        },
+        clearSearchVideos: (state) =>{
+            state.searchVideos.length = 0;
         }
     }
 });
 
-export const {cacheResults, saveSearchVideos} = searchSlice.actions
+export const {cacheResults, saveSearchVideos, clearSearchVideos} = searchSlice.actions
 
 export default searchSlice.reducer
