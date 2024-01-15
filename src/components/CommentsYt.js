@@ -3,18 +3,23 @@ import useComments from '../utils/useComments';
 import { getRelativeTimeDifference } from '../utils/helper';
 import DOMPurify from 'dompurify';
 import { useSelector } from 'react-redux';
-import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
+import { FaCaretUp, FaCaretDown, FaCaretRight } from 'react-icons/fa';
 
 const CommentsYt = ({vId}) => {
     const { isDark } = useSelector(store => store.app)
+    const [showComments, setShowComments] = useState(true)
     const commentsData = useComments(vId)
-    console.log(commentsData)
 
   return (
-    <div className={`pl-[5%] pt-2 ${isDark && 'bg-gray-900'}`}>
-        <h3 className='font-bold text-xl pt-4'>Comments ...</h3>
+    <div className={`pl-[5%] pt-2 pb-5 ${isDark && 'bg-gray-900'}`}>
+        {/* <h3 className='font-bold text-xl pt-4'>Comments ...</h3> */}
+        <div className='flex' onClick={() => setShowComments(prev => !prev)}>
+            <h1 className='text-2xl font-bold'>Comments ... </h1>
+            <span className=' text-blue-800'>{showComments ? <FaCaretDown className='w-8 h-8' /> : <FaCaretRight className='w-8 h-8' />}</span>
+        </div>
+
         {
-            commentsData?.map(comment => <TopLevelComment key={comment?.id} data={comment?.snippet?.topLevelComment?.snippet} replies={comment?.replies} />)
+            showComments && commentsData?.map(comment => <TopLevelComment key={comment?.id} data={comment?.snippet?.topLevelComment?.snippet} replies={comment?.replies} />)
         }
     </div>
   )

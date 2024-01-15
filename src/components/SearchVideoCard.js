@@ -15,7 +15,8 @@ const SearchVideoCard = (props) => {
             <div className='sm:ml-8'>
                 <h2 className='font-bold'>{title}</h2>
                 <h3 className='mt-0 pt-0 text-gray-500 text-sm'>{channelTitle}</h3>
-                <p className='sm:mt-6 text-gray-700'>{description}</p>
+                {/* <p className='sm:mt-6 text-gray-700'>{description}</p> */}
+                <p className='sm:mt-6 text-gray-700'>{description.length > 150 ? description.substring(0, 150) : description}</p>
             </div>
         </div>
         <hr className='w-[90%] ml-[5%]' />

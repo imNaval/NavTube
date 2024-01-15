@@ -8,6 +8,7 @@ import { clearMessage } from '../utils/chatSlice';
 import useVideoDetails from '../utils/useVideoDetail';
 import { modifyNumber } from '../utils/helper';
 import CommentsYt from './CommentsYt';
+import SuggestVideos from './SuggestVideos';
 
 const WatchPage = () => {
     const [width, setWidth] = useState(window.innerWidth)
@@ -15,8 +16,8 @@ const WatchPage = () => {
     const [searchParams] = useSearchParams();
     const vId = searchParams.get('v')
     const dispatch = useDispatch();
+    // const [videoDetail, setVideoDetail] = useState(null);
     const videoDetail = useVideoDetails(vId)
-    // console.log(videoDetail)
 
     let timer;
     const handleResize = (e) => {
@@ -27,7 +28,6 @@ const WatchPage = () => {
         }, 200);
     }
 
-
     useEffect(() => {
         window.scrollTo(0, 0)
         dispatch(closeMenu())
@@ -37,11 +37,11 @@ const WatchPage = () => {
             window.removeEventListener('resize', handleResize)
             dispatch(clearMessage())
         }
-    }, [])
+    }, [vId])
     return (
         <div>
-            <div className={`px-5 col-span-11 ${width > 800 && 'flex'} ${isDark && 'bg-gray-900'}`}>
-                <div className={`${width > 900 ? 'w-2/3' : 'w-full'}`}>
+            <div className={`px-5 col-span-11 ${width > 800 && 'flex'} ${isDark && 'bg-gray-900'} pb-5`}>
+                <div className={`${width > 900 ? 'w-2/3' : 'w-full'} h-[430px]`}>
                     <iframe
                         width="1000"
                         height="400"
@@ -55,7 +55,7 @@ const WatchPage = () => {
                     ></iframe>
                     {
                         videoDetail &&
-                        <div>
+                        <div className='mb-0 pb-0'>
                             <div>
                                 <p className='font-bold text-lg my-2'>{videoDetail?.video?.snippet?.title}</p>
                             </div>
@@ -77,9 +77,24 @@ const WatchPage = () => {
                 </div>
                 <LiveChat width={width} />
             </div>
+            
+            {/* <div className={`${width > 800 && 'flex'} pt-5 justify-between`}> */}
+            <div>
+                <div>
+                    <CommentsContainer />
+                        <hr />
+                    <CommentsYt vId={vId} />
+                        <hr />
+                </div>
+                <div className={`${isDark && 'bg-gray-900'} py-4`}>
+                {
+                    videoDetail && <SuggestVideos category={videoDetail?.video?.snippet?.categoryId} tags={videoDetail?.video?.snippet?.tags} id={vId} />
+                }
+                </div>
+            </div>
 
-            <CommentsYt vId={vId} />
-            <CommentsContainer />
+
+
         </div>
     )
 }

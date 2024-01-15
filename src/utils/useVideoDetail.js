@@ -19,7 +19,7 @@ const useVideoDetails = (vId) =>{
 
     useEffect(()=>{
         getVideoDetail();
-    }, [])
+    }, [vId])
     return videoDetail;
 }
 
