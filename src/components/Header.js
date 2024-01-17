@@ -82,7 +82,7 @@ const Header = () => {
             </div>
 
             <div className={`col-span-8 text-center ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-black'} flex relative px-4`}>
-                { searchBar ?
+                { true ?
                     <div className={`flex items-center ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-black'} w-full`}>
                         <input className={`w-full border border-gray-500 rounded-l-full py-2 px-4 ${isDark && 'bg-gray-900'}`}
                             type='text'

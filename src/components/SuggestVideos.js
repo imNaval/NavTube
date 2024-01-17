@@ -16,7 +16,7 @@ const SuggestVideos = ({category, tags, id}) => {
     <div>
       <div className='flex pl-8' onClick={() => setSuggestedVideos(prev => !prev)}>
         <h1 className='text-2xl font-bold'>Suggestion Video List : </h1>
-        <span className=' text-blue-800'>{suggestedVideos ? <FaCaretDown className='w-8 h-8' /> : <FaCaretRight className='w-8 h-8' />}</span>
+        {/* <span className=' text-blue-800'>{suggestedVideos ? <FaCaretDown className='w-8 h-8' /> : <FaCaretRight className='w-8 h-8' />}</span> */}
       </div>
         {
         videoList?.map(video => <Link to={"/watch?v=" + video.id} key={video.id} >
