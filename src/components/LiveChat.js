@@ -27,7 +27,7 @@ const LiveChat = ({width}) => {
             <div className={`p-2 px-8 font-bold border border-b-0 rounded-t-lg ${isDark ? 'border-gray-200' : 'border-black'}`}>
                 Live Chat
             </div>
-            <div className={`border h-[430px] overflow-y-scroll overflow-x-hidden flex flex-col-reverse ${isDark ? 'border-gray-200' : 'border-black'}`}>
+            <div className={`border h-[430px] overflow-y-scroll overflow-x-hidden flex flex-col-reverse ${isDark ? 'border-gray-200' : 'border-black'} no-scrollbar`}>
                 {
                     chatMessages?.map((chat, index) => <ChatMessage key={index} data={chat} />)
                 }

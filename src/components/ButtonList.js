@@ -20,7 +20,7 @@ const ButtonList = () => {
 
   return (
     <div className={`relative ${isDark && 'bg-gray-900'} px-4`}>
-      <div className="overflow-x-scroll relative">
+      <div className="overflow-x-scroll no-scrollbar relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
             btnList.map((btn) => <Link key={btn} to={"/search/" + btn}> <Button name={btn} /> </Link>)
