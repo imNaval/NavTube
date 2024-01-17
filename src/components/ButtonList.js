@@ -19,20 +19,16 @@ const ButtonList = () => {
   };
 
   return (
-    <div className={`relative ${isDark && 'bg-gray-900'}`}>
-      <div className="overflow-hidden px-12 relative">
+    <div className={`relative ${isDark && 'bg-gray-900'} px-4`}>
+      <div className="overflow-x-scroll relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
             btnList.map((btn) => <Link key={btn} to={"/search/" + btn}> <Button name={btn} /> </Link>)
           }
         </div>
       </div>
-      <button className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" onClick={prevSlide}>
-        <FaChevronLeft className="text-gray-600" />
-      </button>
-      <button className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" onClick={nextSlide}>
-        <FaChevronRight className="text-gray-600" />
-      </button>
+      {/* <button className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" onClick={prevSlide}> <FaChevronLeft className="text-gray-600" /> </button>
+      <button className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" onClick={nextSlide}> <FaChevronRight className="text-gray-600" /> </button> */}
     </div>
   );
 }
