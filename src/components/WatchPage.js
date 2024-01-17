@@ -47,7 +47,7 @@ const WatchPage = () => {
                         height="400"
                         // className={`${width>900 ?'w-2/3' : 'w-full'}`}
                         className='w-full'
-                        src={"https://www.youtube.com/embed/" + vId + "?si=7bVJ0B1AOmBXB6RN"}
+                        src={"https://www.youtube.com/embed/" + vId + "?si=7bVJ0B1AOmBXB6RN&autoplay=1"}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

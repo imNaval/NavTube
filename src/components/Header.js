@@ -88,7 +88,11 @@ const Header = () => {
                             type='text'
                             value={searchQuery}
                             onChange={(e)=> setSearchQuery(e.target.value)}
-                            onFocus={()=> setShowSuggestions(true)}
+                            // onFocus={()=> setShowSuggestions(true)}
+                            onFocus={()=> {
+                                setShowSuggestions(true)
+                                setSearchBar(true)
+                            }}
                             onBlur={()=> setTimeout(()=>{
                                 setShowSuggestions(false)
                             }, 220)}
