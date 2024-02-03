@@ -57,7 +57,6 @@ const VideoContainer = () => {
     return ()=> window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // if(!videos) return <div></div>
   return (
     !videos || videos.length===0 ? <ShimmerVideoContainer /> :
     <div className='flex flex-wrap justify-center' ref={refVideoContainer}>

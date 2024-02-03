@@ -16,7 +16,6 @@ const WatchPage = () => {
     const [searchParams] = useSearchParams();
     const vId = searchParams.get('v')
     const dispatch = useDispatch();
-    // const [videoDetail, setVideoDetail] = useState(null);
     const videoDetail = useVideoDetails(vId)
 
     let timer;

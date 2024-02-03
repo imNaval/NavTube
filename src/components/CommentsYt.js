@@ -12,7 +12,6 @@ const CommentsYt = ({vId}) => {
 
   return (
     <div className={`pl-[5%] pt-2 pb-5 ${isDark && 'bg-gray-900'}`}>
-        {/* <h3 className='font-bold text-xl pt-4'>Comments ...</h3> */}
         <div className='flex' onClick={() => setShowComments(prev => !prev)}>
             <h1 className='text-2xl font-bold'>Comments ... </h1>
             <span className=' text-blue-800'>{showComments ? <FaCaretDown className='w-8 h-8' /> : <FaCaretRight className='w-8 h-8' />}</span>
@@ -40,7 +39,6 @@ const TopLevelComment = (props) =>{
                     <p className='text-xs mx-2 mt-1'>{getRelativeTimeDifference(data?.publishedAt)}</p>
                 </div>
                 <div>
-                    {/* <p>{data?.textDisplay}</p> */}
                     <p dangerouslySetInnerHTML={{ __html:  sanitizedHTML}}></p>
                 </div>
 

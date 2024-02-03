@@ -34,7 +34,6 @@ const CommentsContainer = () => {
   const [showComments, setShowComments] = useState(true)
   return (
     <div className={`p-8 ${isDark && 'bg-gray-900'}`}>
-        {/* <h1 className='text-2xl font-bold'>Nested Components : </h1> */}
       <div className='flex' onClick={() => setShowComments(prev => !prev)}>
         <h1 className='text-2xl font-bold'>Nested Components : </h1>
         <span className=' text-blue-800'>{showComments ? <FaCaretDown className='w-8 h-8' /> : <FaCaretRight className='w-8 h-8' />}</span>
