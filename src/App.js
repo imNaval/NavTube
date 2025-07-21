@@ -8,6 +8,7 @@ import MainContainer from './components/MainContainer';
 import WatchPage from './components/WatchPage';
 import Footer from './components/Footer';
 import SearchVideos from './components/SearchVideos';
+import Shorts from './components/Shorts';
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
         },{
           path: "/search/:query",
           element : <SearchVideos />
+        },{
+          path: "/shorts",
+          element : <Shorts />
         }
       ]
     }

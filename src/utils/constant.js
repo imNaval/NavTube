@@ -8,6 +8,12 @@ export const MORE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/videos?
 
 export const SEARCH_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&key=' + CREDENTIALS //&q=javascript
 
+export const VIDEO_DETAILS_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&key=' + CREDENTIALS
+
+export const SHORTS_SEARCH_API = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&videoDuration=short&q=shorts&key=' + CREDENTIALS
+
+export const SHORTS_TRENDING_API = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&maxResults=50&videoCategoryId=20&key=' + CREDENTIALS
+
 // export const YOUTUBE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
 export const YOUTUBE_SEARCH_SUGGESTION_API = "https://coder-food-server.vercel.app/api/youtube/get/search?q="
 

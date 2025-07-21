@@ -4,14 +4,14 @@ import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const Body = () => {
-  const {isDark} = useSelector(store => store.app)
+  const {isDark, isMenuOpen} = useSelector(store => store.app)
   return (
-    <div className={`grid grid-flow-col h-full ${isDark && 'text-white bg-black'}`}>
-      <div className={`mt-20 fixed overflow-y-scroll h-full pb-20 z-40`}>
-        <Sidebar />
-      </div>
-      <div className='mt-28 col-span-11 sm:col-span-10 overflow-y-scroll'>
-        <Outlet />
+    <div className={`flex h-full ${isDark && 'text-white bg-black'}`}>
+      <Sidebar />
+      <div className={`flex-1 transition-all duration-300 ease-in-out ${isMenuOpen ? 'ml-64' : 'ml-16'}`}>
+        <div className='mt-20 p-4 min-h-screen'>
+          <Outlet />
+        </div>
       </div>
     </div>
   )

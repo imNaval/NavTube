@@ -34,30 +34,48 @@ const VideoCard = () =>{
 export const ShimmerSearchVideoContainer = () =>{
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return(
-    // ${isMenuOpen&& width>800 && 'ml-48'}
-    <div className={`'col-span-11 mb-12 ml-8'`}>
-    {
-      cards.map(card => <SearchVideoCard key={card} />)
-    }
+    <div className='col-span-11 mb-12 ml-8'>
+      {/* Shorts Shimmer */}
+      <div className="mb-8">
+        <div className="text-xl font-semibold mb-4 px-4 w-24 h-6 bg-gray-300 rounded"></div>
+        <div className="flex gap-4 overflow-x-auto pb-4 px-4">
+          {[1, 2, 3, 4, 5, 6].map(card => <ShortVideoCardShimmer key={card} />)}
+        </div>
+      </div>
+      
+      {/* Regular Videos Shimmer */}
+      <div className="space-y-2">
+        {cards.map(card => <SearchVideoCard key={card} />)}
+      </div>
+    </div>
+  )
+}
+
+const ShortVideoCardShimmer = () => {
+  const { isDark } = useSelector(store => store.app)
+  return (
+    <div className={`flex-shrink-0 w-40 ${isDark ? 'text-white' : 'text-black'}`}>
+      <div className="w-full h-72 bg-gray-300 rounded-xl"></div>
+      <div className="mt-2 px-1">
+        <div className="w-full h-4 bg-gray-300 rounded mb-1"></div>
+        <div className="w-3/4 h-3 bg-gray-300 rounded"></div>
+      </div>
     </div>
   )
 }
 const SearchVideoCard = () =>{
   const { isDark} = useSelector(store=> store.app)
   return(
-    <>
-    <div className={`sm:flex w-[90%] h-96 sm:h-72 overflow-hidden group p-4 ${isDark && 'bg-gray-900'} my-2`}>
-        <div className='w-full sm:w-1/2 h-2/3 sm:h-full relative bg-gray-800'>
-            <div className='w-full shadow-xl bg-gray-700'></div>
-        </div>
-        <div className='sm:ml-8 mt-4 sm:mt-auto w-full sm:w-1/2'>
-            <p className='w-full h-10 bg-gray-600'></p>
-            <p className='my-1 h-6 bg-gray-600 w-16'></p>
-            <p className='sm:mt-6 my-2 h-10 bg-gray-600 w-2/3'></p>
+    <div className={`flex gap-4 p-4 ${isDark ? 'bg-gray-800' : 'bg-gray-100'} my-2`}>
+        <div className='relative flex-shrink-0 w-80 h-44 bg-gray-300 rounded-lg'></div>
+        <div className='flex-1 min-w-0'>
+            <div className='w-full h-6 bg-gray-300 rounded mb-2'></div>
+            <div className='w-3/4 h-4 bg-gray-300 rounded mb-1'></div>
+            <div className='w-1/2 h-4 bg-gray-300 rounded mb-2'></div>
+            <div className='w-full h-4 bg-gray-300 rounded mb-1'></div>
+            <div className='w-2/3 h-4 bg-gray-300 rounded'></div>
         </div>
     </div>
-    <hr className='w-[90%] ml-[5%]' />
-    </>
   )
 }
 

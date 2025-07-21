@@ -27,6 +27,8 @@ const useSuggestVideos = (cId, tags, vId) => {
     }
 
     const getTagsSuggestedVideos = async() =>{
+        if (!tags || tags.length === 0) return;
+        
         const apiKey = CREDENTIALS
         const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&maxResults=50&key=${apiKey}&q=${tags.join('|')}`
         const data = await fetch(url)
