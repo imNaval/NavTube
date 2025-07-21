@@ -60,6 +60,7 @@ export const isShortVideo = (video) => {
     
     // Method 2: Check duration (YouTube Shorts are typically under 60 seconds)
     let isShortDuration = false;
+    let totalSeconds = 0;
     if (video.contentDetails?.duration) {
         const duration = video.contentDetails.duration;
         const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
@@ -67,7 +68,7 @@ export const isShortVideo = (video) => {
             const hours = parseInt(match[1] || 0);
             const minutes = parseInt(match[2] || 0);
             const seconds = parseInt(match[3] || 0);
-            const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            totalSeconds = hours * 3600 + minutes * 60 + seconds;
             isShortDuration = totalSeconds <= 60; // YouTube Shorts are under 60 seconds
         }
     }
@@ -79,8 +80,21 @@ export const isShortVideo = (video) => {
         (videoId.startsWith('shorts') || videoId.includes('shorts'))
     );
     
-    // Return true if any of the methods indicate it's a short
-    return hasShortsTag || isShortDuration || isShortsId;
+    // Primary requirement: Video must be under 60 seconds to be considered a short
+    // Secondary requirements: Must also have shorts tag or shorts ID pattern
+    if (isShortDuration) {
+        // If it's short duration, it can be a short regardless of tags
+        console.log(`✅ Video "${title}" is a short (${totalSeconds}s)`);
+        return true;
+    } else if (hasShortsTag || isShortsId) {
+        // If it has shorts tags but is longer than 60 seconds, it's NOT a short
+        // This prevents 3+ hour videos with "#shorts" in title from being classified as shorts
+        console.log(`❌ Video "${title}" has shorts tags but is too long (${totalSeconds}s) - NOT a short`);
+        return false;
+    }
+    
+    console.log(`❌ Video "${title}" is not a short (${totalSeconds}s)`);
+    return false;
 }
 
 export const formatDuration = (duration) => {

@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux'
 const Body = () => {
   const {isDark, isMenuOpen} = useSelector(store => store.app)
   return (
-    <div className={`flex h-full ${isDark && 'text-white bg-black'}`}>
+    <div className={`flex h-screen ${isDark && 'text-white bg-black'}`}>
       <Sidebar />
-      <div className={`flex-1 transition-all duration-300 ease-in-out ${isMenuOpen ? 'ml-64' : 'ml-16'}`}>
-        <div className='mt-20 p-4 min-h-screen'>
+      <div className={`flex-1 transition-all duration-300 ease-in-out ${isMenuOpen ? 'ml-60' : 'ml-16'} overflow-y-auto`}>
+        <div className='mt-[85px] p-4 min-h-screen'>
           <Outlet />
         </div>
       </div>

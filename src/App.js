@@ -18,7 +18,7 @@ function App() {
       element : <>
         <Header /> 
         <Body />
-        <Footer /> 
+        {/* <Footer />  */}
       </>,
       children : [
         {
@@ -31,8 +31,12 @@ function App() {
         },{
           path: "/search/:query",
           element : <SearchVideos />
-        },{
+        },        {
           path: "/shorts",
+          element : <Shorts />
+        },
+        {
+          path: "/shorts/:videoId",
           element : <Shorts />
         }
       ]

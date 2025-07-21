@@ -159,24 +159,10 @@ const Sidebar = () => {
   return (
     <div 
       className={`fixed left-0 top-20 h-[calc(100vh-5rem)] z-40 transition-all duration-300 ease-in-out border-r ${
-        isDark ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-gray-800 border-gray-200'
-      } ${isMenuOpen ? 'w-64' : 'w-16'}`}
+        isDark ? 'bg-gray-900 text-white border-r-gray-700' : 'bg-white text-gray-800 border-gray-200'
+      } ${isMenuOpen ? 'w-64' : 'w-20'}`}
     >
-      <div className="p-4 h-full overflow-y-auto">
-        {/* Menu Toggle Button */}
-        <div className="mb-4">
-          <button
-            onClick={() => dispatch(toggleMenu())}
-            className={`flex items-center p-2 rounded-lg cursor-pointer transition-all duration-200 ${
-              isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-            }`}
-          >
-            <span className="text-xl">☰</span>
-            <span className={`ml-3 transition-all duration-200 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-              Menu
-            </span>
-          </button>
-        </div>
+      <div className="p-4 h-full overflow-y-auto mt-4">
 
         {/* Sidebar Items */}
         <div className="space-y-1">

@@ -71,7 +71,8 @@ const Header = () => {
     }
 
     return (
-        <div className={`grid grid-flow-col p-5 shadow-lg fixed w-full mt-0 z-50 ${isDark ? 'bg-gray-900 shadow-gray-800' : 'bg-white'} items-center`}>
+        // shadow-lg shadow-gray-800
+        <div className={`grid grid-flow-col p-5 fixed w-full mt-0 z-50 ${isDark ? 'bg-gray-900 ' : 'bg-white'} items-center`}>
             <div className='flex items-center col-span-2 justify-start'>
                 <FaBars className={`h-8 w-8 ${isDark ? 'text-white' : 'text-black'}`} onClick={() => toggleMenuHandler()} />
                 {/* <Link to="/"> */}  {/*it give error bcs header was not wrapped with router */}

@@ -114,9 +114,7 @@ const SearchVideos = () => {
                     <h2 className="text-xl font-semibold mb-4 px-4">Shorts</h2>
                     <div className="flex gap-4 overflow-x-auto pb-4 px-4 scrollbar-hide">
                         {shortVideos.map(video => (
-                            <Link to={"/watch?v=" + (video.id || video.id?.videoId)} key={video.id || video.id?.videoId}>
-                                <ShortVideoCard video={video} />
-                            </Link>
+                            <ShortVideoCard key={video.id || video.id?.videoId} video={video} />
                         ))}
                     </div>
                 </div>

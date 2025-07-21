@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams, useNavigate } from 'react-router-dom'
 import { YOUTUBE_VIDEO_API, VIDEO_DETAILS_API, SHORTS_SEARCH_API, SHORTS_TRENDING_API } from '../utils/constant'
 import { isShortVideo, formatDuration } from '../utils/helper'
 import { Link } from 'react-router-dom'
 
 const Shorts = () => {
+    const { videoId } = useParams()
+    const navigate = useNavigate()
     const [shorts, setShorts] = useState([])
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
     const [loading, setLoading] = useState(true)
@@ -16,6 +19,16 @@ const Shorts = () => {
         try {
             setLoading(true)
             console.log('Starting to fetch shorts...')
+            
+            // Check localStorage for cached shorts
+            const cachedShorts = localStorage.getItem('cachedShorts')
+            if (cachedShorts) {
+                const parsedShorts = JSON.parse(cachedShorts)
+                console.log('Using cached shorts:', parsedShorts.length)
+                setShorts(parsedShorts)
+                setLoading(false)
+                return
+            }
             
             // Method 1: Try to get shorts using multiple search strategies
             let shortVideos = []
@@ -158,9 +171,9 @@ const Shorts = () => {
                             thumbnails: {
                                 high: { url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg' }
                             },
-                            tags: ['shorts', 'music', 'viral']
+                            tags: ['music', 'viral']
                         },
-                        contentDetails: { duration: 'PT3M33S' },
+                        contentDetails: { duration: 'PT0M45S' },
                         statistics: { viewCount: '1000000' }
                     },
                     {
@@ -184,9 +197,9 @@ const Shorts = () => {
                             thumbnails: {
                                 high: { url: 'https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg' }
                             },
-                            tags: ['foodie', 'shorts', 'matilda', 'eating', 'nycfood', 'cake']
+                            tags: ['foodie', 'matilda', 'eating', 'nycfood', 'cake']
                         },
-                        contentDetails: { duration: 'PT1M00S' },
+                        contentDetails: { duration: 'PT0M55S' },
                         statistics: { viewCount: '750000' }
                     },
                     {
@@ -208,6 +221,10 @@ const Shorts = () => {
             
             console.log('Final shorts array:', shortVideos)
             console.log('Shorts array length:', shortVideos.length)
+            
+            // Cache the shorts data in localStorage
+            localStorage.setItem('cachedShorts', JSON.stringify(shortVideos))
+            
             setShorts(shortVideos)
         } catch (error) {
             console.error('Error fetching shorts:', error)
@@ -221,16 +238,24 @@ const Shorts = () => {
                         thumbnails: {
                             high: { url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg' }
                         },
-                        tags: ['shorts', 'music', 'viral']
+                        tags: ['music', 'viral']
                     },
-                    contentDetails: { duration: 'PT3M33S' },
+                    contentDetails: { duration: 'PT0M45S' },
                     statistics: { viewCount: '1000000' }
                 }
             ]
+            // Cache the fallback shorts data
+            localStorage.setItem('cachedShorts', JSON.stringify(fallbackShorts))
             setShorts(fallbackShorts)
         } finally {
             setLoading(false)
         }
+    }
+
+    // Function to refresh shorts (clear cache and refetch)
+    const refreshShorts = () => {
+        localStorage.removeItem('cachedShorts')
+        getShorts()
     }
 
     useEffect(() => {
@@ -240,9 +265,30 @@ const Shorts = () => {
     // Initialize first video as playing when shorts are loaded
     useEffect(() => {
         if (shorts.length > 0) {
-            setPlayingVideos(new Set([0]))
+            if (videoId) {
+                console.log('Looking for video ID:', videoId)
+                // Find the index of the specific video
+                const targetIndex = shorts.findIndex(short => short.id === videoId)
+                console.log('Found video at index:', targetIndex)
+                if (targetIndex !== -1) {
+                    setCurrentVideoIndex(targetIndex)
+                    setPlayingVideos(new Set([targetIndex]))
+                } else {
+                    console.log('Video not found in shorts list, starting from first video')
+                    // Update URL to first video
+                    navigate(`/shorts/${shorts[0].id}`, { replace: true })
+                    setCurrentVideoIndex(0)
+                    setPlayingVideos(new Set([0]))
+                }
+            } else {
+                console.log('No video ID provided, redirecting to first video')
+                // Redirect to first video with its ID
+                navigate(`/shorts/${shorts[0].id}`, { replace: true })
+                setCurrentVideoIndex(0)
+                setPlayingVideos(new Set([0]))
+            }
         }
-    }, [shorts])
+    }, [shorts, videoId, navigate])
 
 
 
@@ -261,12 +307,18 @@ const Shorts = () => {
         if (newIndex !== currentVideoIndex && newIndex >= 0 && newIndex < shorts.length) {
             setCurrentVideoIndex(newIndex)
             
+            // Update URL to reflect current video
+            const currentVideo = shorts[newIndex]
+            if (currentVideo && currentVideo.id) {
+                navigate(`/shorts/${currentVideo.id}`, { replace: true })
+            }
+            
             // Auto-play the current video and pause others
             const newPlayingVideos = new Set()
             newPlayingVideos.add(newIndex)
             setPlayingVideos(newPlayingVideos)
         }
-    }, [currentVideoIndex, shorts.length])
+    }, [currentVideoIndex, shorts.length, shorts, navigate])
 
     useEffect(() => {
         const container = containerRef.current

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ButtonList from './ButtonList'
 import VideoContainer from './VideoContainer'
+import ShortsRail from './ShortsRail'
 import { useSelector } from 'react-redux'
 
 const MainContainer = () => {
@@ -20,8 +21,10 @@ const MainContainer = () => {
   }, [])
 
   return (
-    <div className={`'col-span-11' ${isMenuOpen&& width>800 && 'ml-40'}`}>
+    // <div className={`'col-span-11' ${isMenuOpen&& width>800 && 'ml-40'}`}>
+    <div>
         <ButtonList />
+        <ShortsRail />
         <VideoContainer />
     </div>
   )

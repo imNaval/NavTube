@@ -11,7 +11,7 @@ const ButtonList = () => {
   const isDark = useSelector(store=> store.app.isDark)
 
   return (
-    <div className={`relative ${isDark && 'bg-gray-900'} px-4`}>
+    <div className={`sticky top-[100px] z-50 ${isDark ? 'bg-gray-900' : 'bg-white'} px-4 py-2 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>
       <div className="overflow-x-scroll no-scrollbar relative">
         <div className="flex transition-transform ease-in-out duration-300" style={{ transform: `translateX(-${currentIndex * (100 / length)}%)` }} >
           {
