@@ -6,9 +6,12 @@ const ShortVideoCard = ({ info, video }) => {
   const videoData = info || video
   const { snippet, statistics, contentDetails } = videoData
   const { channelTitle, title, thumbnails } = snippet
+  
+  // Handle different video ID formats
+  const videoId = videoData.id || videoData.id?.videoId || videoData.videoId
 
   return (
-    <Link to={"/shorts/" + videoData.id}>
+    <Link to={"/shorts/" + videoId}>
       <div className="w-40 flex-shrink-0 cursor-pointer group">
         {/* Thumbnail Container */}
         <div className="relative w-full aspect-[9/16] rounded-lg overflow-hidden bg-gray-200">
